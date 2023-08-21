@@ -1,14 +1,20 @@
-variables:
-  user:
-    env: ADMIN_USERNAME
-    value: "admin"
-    type: string
-  password:
-    env: ADMIN_PASSWORD
-    value: "not-set"
-    type: string
-
-services:
-  webserver:
-    port: 8080
-    protocol: tcp
+namespace: ernstov
+test-app-blank:
+  defines: runnable
+  containers:
+    test-app-blank:
+      build: .
+  variables:
+    password:
+      env: ADMIN_PASSWORD
+      type: string
+      value: not-set
+    user:
+      env: ADMIN_USERNAME
+      type: string
+      value: admin
+  services:
+    webserver:
+      container: test-app-blank
+      port: 8080
+      protocol: tcp
